@@ -1,0 +1,8 @@
+main: org.riveros.coder.Main.TNTTag
+version: 1.11.1
+name: ZC-TNTTAG
+commands:
+  zelitag:
+    description: All commands for TNT Tag.
+  zctnt:
+    description: All commands for TNT Tag.

@@ -1,0 +1,49 @@
+NOW_HAS_COINS: '{player} now has {amount} coins.'
+NOW_HAS_WINS: '{player} now has {amount} wins.'
+NOW_HAS_TAGS: '{player} now has {amount} tags.'
+NOW_HAS_TAGGEDS: '{player} now has {amount} taggeds.'
+AVAILABLE_ARENAS: 'Available Arenas: '
+INVALID_ARENA: 'Arena Invalida'
+RELOAD_COMPLETE: 'Plugin reiniciado correctamente'
+THERE_WAS_A_RELOAD: There was a reload
+ARENA_CREATED: Arena {arena} has been created!
+ARENA_DELETED: Arena {arena} has been deleted!
+UNSPECIFIED_ARENA: You must specify which arena to delete.
+CONFIRMATION_MESSAGE: Type /tnttag setup deletearena confirm to confirm this action.%newlineThis cannot be undone.%newlineThe confirmation will expire in 10 seconds.
+STATS: 'Coins: {money}%newlinePlayers tagged: {tags}%newlineTimes tagged: {taggeds}%newlineWins:
+  {wins}'
+COINS_CHECK: 'Coins: {amount}%newlineUse /tag transfer coins <player> <amount> to
+  transfer coins to another player.'
+NOT_IN_ARENA: You must be in an arena in order to leave TNT Tag!
+LEAVE_CURRENT_ARENA: You must first leave the arena you are currently in.
+COMMAND_ERROR: You cannot perform {command} while playing TNT Tag
+JOINED_FROM_BED: Don't join from a bed.
+ARENA_ALREADY_STARTED: The game in the arena you are looking for has already started!
+FULL_ARENA: The arena you are looking for is currently full!
+JOINED_GAME: '{player} &ejoined the game (&d{size}&e/&d{max_players}&e)'
+ARENA_NOT_FOUND: The arena you are looking for could not be found!
+FORCE_STARTING: Force starting the game...
+ARENA_STARTED_WHEN_FORCE_START: The arena has already started!
+MINIMUM_REQUIRED_NOT_REACHED: Minimum players must be 2!
+FORCE_ENDING: Force ending the game...
+FORCE_END_KICKED: The arena has been force to an end by an admin.
+FORCE_START_ERROR: The arena hasn't started!
+SECONDS_UNTIL_GAME_STARTS: '&e{time} seconds until the game starts!'
+SECOND_UNTIL_GAME_STARTS: '&e{time} second until the game starts!'
+TNT_RELEASED: '&eThe TNT has been released!'
+EARNED_50_COINS_BONUS: '&6You earned a total of 50 Coins!'
+LINE_BREAK: '&6#&7------------------&6#'
+PLAYER_BLEW_UP: '{player} &eblew up!'
+ROUND_ENDED: '&eRound Ended'
+PLAYER_IS_IT: '{player} &eis ''it'''
+ARENA_TEMP_SAVED: Arena location temporarily saved.
+LOBBY_TEMP_SAVED: Lobby location temporarily saved.
+SPECTATOR_TEMP_SAVED: Spectator location temporarily saved.
+MISSING_LOBBY: Lobby Location is missing.
+MISSING_ARENA: Arena Location is missing.
+MISSING_SPECTATOR: Spectators Location is missing.
+WIN_MESSAGE: '{player} Obtuvo la victoria del TNT TAG'
+INVALID_NUMBER: 'Numero Invalido'
+CLICK_TO_CREATE_SIGN: Punch any sign to create a join sign for the Arena {arena}.%newlineThis will expire in 60 seconds.
+SIGN_ALREADY_EXISTS: The sign you punched, is already registered.
+SIGN_CREATED: Sign successfully created.

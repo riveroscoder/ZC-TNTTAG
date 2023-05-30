@@ -1,0 +1,26 @@
+BroadcastTimes:
+- '1'
+- '2'
+- '3'
+- '4'
+- '5'
+- '10'
+- '15'
+- '20'
+- '30'
+- '60'
+- '120'
+AllowedCommands:
+- time
+minplayers: 2
+maxplayers: 10
+usepermissions: false
+givebonus: true
+bonus:
+  RoundSurvive: 2
+  Win: 50
+signs:
+  line1: '&8TNT TAG'
+  line2: join
+  line3: '{arena}'
+  line4: ignore
