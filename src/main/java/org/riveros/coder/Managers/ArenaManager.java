@@ -13,6 +13,7 @@ import org.riveros.coder.FileConfig.GameData;
 import org.riveros.coder.FileConfig.Messages;
 import org.riveros.coder.Utils.Arena;
 import org.riveros.coder.Utils.Message;
+import org.riveros.coder.Utils.Utils;
 
 public class ArenaManager {
 	
@@ -52,6 +53,7 @@ public class ArenaManager {
 						arena.getAlivePlayers().add(player);
 						int playersLeft = arena.getMinPlayers() - arena.getPlayers().size();
 
+						Utils.CCT(player, "", "&fIngresaste a la Arena &a" + arenaName);
 						arena.sendMessage(Messages.getMessage(Message.joinedGame).replace("{player}", player.getName()).replace("{size}", arena.getPlayers().size() + "").replace("{max_players}", arena.getMaxPlayers() + ""));
 						if ((playersLeft == 0) && (!arena.runningCountdown())) {
 							startArena(arenaName);

@@ -137,6 +137,13 @@ public class Arena {
 		}
 	}
 
+	public void sendTitle(String title, String subtitle) {
+		for (Player player : this.players) {
+			Reflections.send(player, 5, 1, 5, title, subtitle);
+		}
+	}
+
+
 	public void endArena() {
 		setInGame(false);
 		for (Player player : this.players) {

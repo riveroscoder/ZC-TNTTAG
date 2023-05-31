@@ -19,6 +19,7 @@ import org.riveros.coder.FileConfig.Config;
 import org.riveros.coder.FileConfig.Messages;
 import org.riveros.coder.Utils.Arena;
 import org.riveros.coder.Utils.Message;
+import org.riveros.coder.Utils.Reflections;
 
 public class CountdownManager {
 
@@ -39,7 +40,9 @@ public class CountdownManager {
 			arena.setTaskID(Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 				public void run() {
 					if (timesToBroadcast.contains(arena.getSeconds()))
-						if (arena.getSeconds() == 1) {
+						if(arena.getSeconds() <= 5){
+							plugin.getMessageManager().sendInGamePlayersTitle("&6&l" + (new StringBuilder(String.valueOf(arena.getSeconds()))).toString() + "&6&L!", "&fPreparate...", arena);
+						} else if (arena.getSeconds() == 1) {
 							plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.secondCountdown).replace("{time}", (new StringBuilder(String.valueOf(arena.getSeconds()))).toString()), arena);
 						} else {
 							plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.secondsCountdown).replace("{time}", (new StringBuilder(String.valueOf(arena.getSeconds()))).toString()), arena);
@@ -58,6 +61,8 @@ public class CountdownManager {
 						}
 
 						plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.TNTReleased), arena);
+						plugin.getMessageManager().sendInGamePlayersTitle("&b&lCORRE!", "&fLa &cTNT &ffue entregada...", arena);
+
 						pickRandomTNT();
 						startRound();
 					}
@@ -76,6 +81,7 @@ public class CountdownManager {
 				for (Player player : arena.getPlayers()) {
 					arena.setBoard(player, arena.getSeconds());
 					player.setLevel(arena.getSeconds());
+					plugin.getMessageManager().sendInGamePlayersTitle("&e", "&fSe esta iniciando la nueva &eRonda&f...", arena);
 				}
 
 				if (arena.getSeconds() == 0) {
@@ -99,7 +105,7 @@ public class CountdownManager {
 							}
 							
 							plugin.getMessageManager().sendNoPrefixMessage(player, Messages.getMessage(Message.coinsBonus));
-							plugin.getMessageManager().sendNoPrefixMessage(player, Messages.getMessage(Message.lineBreak));
+//							plugin.getMessageManager().sendNoPrefixMessage(player, Messages.getMessage(Message.lineBreak));
 							Config.executeGameWinCommand(player);
 							arena.getAlivePlayers().remove(player.getName());
 
@@ -153,10 +159,20 @@ public class CountdownManager {
 
 			world.createExplosion(player.getLocation(), 0.0F);
 
+			plugin.getMessageManager().sendInGamePlayersTitle("&c&lBOOM!", "&cLos jugadores con la bomba explotaron...", arena);
 			plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.playerBlewUp).replace("{player}", player.getName()), arena);
 
 			player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(0, new ItemStack(Material.COMPASS, 1));
 			player.getInventory().setItem(1, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(2, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(3, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(4, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(5, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(6, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(7, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(8, new ItemStack(Material.AIR, 1));
+			player.getInventory().setItem(9, new ItemStack(Material.AIR, 1));
 
 			it.remove();
 			arena.getPlayers().remove(player);
@@ -180,7 +196,7 @@ public class CountdownManager {
 			for (PotionEffect effect : player.getActivePotionEffects()) {
 				player.removePotionEffect(effect.getType());
 			}
-			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, Config.getSpeed(Config.PlayerType.Player).intValue()));
+			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 3));
 			plugin.getFileManager().saveConfig();
 		}
 
@@ -196,7 +212,7 @@ public class CountdownManager {
 		for (Player player : arena.getTNTPlayers()) {
 			plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.playerIsIt).replace("{player}", player.getName()), arena);
 			if(!arena.getTNTPlayers().contains(player)) {
-				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, Config.getSpeed(Config.PlayerType.Player).intValue()));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 3));
 			}
 		}
 	}
@@ -217,11 +233,20 @@ public class CountdownManager {
 		if (players[randomInt] != null) {
 			Player player = players[randomInt];
 			player.getInventory().setHelmet(new ItemStack(Material.TNT, 1));
-			player.getInventory().setItem(0, new ItemStack(Material.TNT, 1));
+			player.getInventory().setItem(0, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(1, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(2, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(3, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(4, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(5, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(6, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(7, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(8, new ItemStack(Material.TNT, 64));
+			player.getInventory().setItem(9, new ItemStack(Material.TNT, 64));
 			for (PotionEffect effect : player.getActivePotionEffects()) {
 				player.removePotionEffect(effect.getType());
 			}
-			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, Config.getSpeed(Config.PlayerType.TNT).intValue()));
+			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 4));
 		}
 		players = null;
 	}

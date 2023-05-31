@@ -35,15 +35,20 @@ public class MessageManager {
 		arena.sendMessage(s);
 	}
 
+	public void sendInGamePlayersTitle(String s, String s2, Arena arena) {
+		arena.sendTitle(ChatColor.translateAlternateColorCodes('&', (s)), ChatColor.translateAlternateColorCodes('&', (s2)));
+	}
+
 	public void sendWinMessage(Player player2, String s, Arena arena) {
 		for (Player player : arena.getPlayers()) {
-			player.sendMessage(Messages.getMessage(Message.lineBreak));
+			player.sendMessage("");
 			player.sendMessage(Messages.getMessage(Message.winMessage).replace("{player}", s));
-			player.sendMessage(Messages.getMessage(Message.lineBreak));
+			player.sendMessage("");
 		}
-		player2.sendMessage(Messages.getMessage(Message.lineBreak));
+		player2.sendMessage("");
 		player2.sendMessage(Messages.getMessage(Message.winMessage).replace("{player}", s));
-		player2.sendMessage(Messages.getMessage(Message.lineBreak));
+		player2.sendMessage("");
+
 	}
 
 	public void isConsole(CommandSender sender) {

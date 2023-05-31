@@ -57,7 +57,7 @@ public class EntityDamageByEntityListener implements Listener {
 					}
 
 					victim.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 4));
-					damager.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 4));
+					damager.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 3));
 
 					victim.getInventory().setHelmet(new ItemStack(Material.TNT, 1));
 					damager.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
