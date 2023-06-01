@@ -1,10 +1,11 @@
-package org.riveros.coder.Utils;
+package org.riveros.coder.Managers.Arena;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import org.riveros.coder.FileConfig.Messages;
 import org.riveros.coder.Main.TNTTag;
+import org.riveros.coder.Utils.Message;
 
 public class CreateArenaData {
 

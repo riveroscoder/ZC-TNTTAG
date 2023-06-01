@@ -7,7 +7,9 @@ import org.riveros.coder.Main.TNTTag;
 public class Permissions {
 	
 	public Permission all = new Permission("zctnttag.*");
+
 	public Permission join = new Permission("zctnttag.join");
+	public Permission setspawn = new Permission("zctnttag.setspawn");
 	public Permission leave = new Permission("zctnttag.leave");
 	public Permission spectate = new Permission("zctnttag.spectate");
 	public Permission add = new Permission("zctnttag.add");

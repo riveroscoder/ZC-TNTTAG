@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.riveros.coder.Main.TNTTag;
 import org.riveros.coder.FileConfig.Messages;
 import org.riveros.coder.Utils.AbstractTagAdminCommands;
-import org.riveros.coder.Utils.Arena;
+import org.riveros.coder.Managers.Arena.Arena;
 import org.riveros.coder.Utils.Message;
 import org.riveros.coder.Utils.Permissions;
 import org.riveros.coder.Utils.TNTTagSign;

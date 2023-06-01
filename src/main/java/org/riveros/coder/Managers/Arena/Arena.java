@@ -1,4 +1,4 @@
-package org.riveros.coder.Utils;
+package org.riveros.coder.Managers.Arena;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-import org.riveros.coder.Managers.CountdownManager;
 import org.riveros.coder.Managers.InventoryManager;
 import org.riveros.coder.Main.TNTTag;
+import org.riveros.coder.Utils.Reflections;
 
 public class Arena {
 

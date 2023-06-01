@@ -9,7 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import org.riveros.coder.Commands.CommandManager;
 import org.riveros.coder.Managers.*;
-import org.riveros.coder.Utils.Arena;
+import org.riveros.coder.Managers.Arena.ArenaManager;
+import org.riveros.coder.Managers.Arena.Arena;
+import org.riveros.coder.Managers.Arena.TempArenaDataManager;
 import org.riveros.coder.Utils.Permissions;
 
 public class TNTTag extends JavaPlugin {

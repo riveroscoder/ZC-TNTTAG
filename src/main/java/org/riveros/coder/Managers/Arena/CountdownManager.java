@@ -1,4 +1,4 @@
-package org.riveros.coder.Managers;
+package org.riveros.coder.Managers.Arena;
 
 import java.util.Iterator;
 import java.util.List;
@@ -17,9 +17,10 @@ import org.bukkit.potion.PotionEffectType;
 import org.riveros.coder.Main.TNTTag;
 import org.riveros.coder.FileConfig.Config;
 import org.riveros.coder.FileConfig.Messages;
-import org.riveros.coder.Utils.Arena;
+import org.riveros.coder.Managers.Arena.Arena;
+import org.riveros.coder.Managers.InventoryManager;
 import org.riveros.coder.Utils.Message;
-import org.riveros.coder.Utils.Reflections;
+import org.riveros.coder.Utils.Utils;
 
 public class CountdownManager {
 
@@ -42,6 +43,7 @@ public class CountdownManager {
 					if (timesToBroadcast.contains(arena.getSeconds()))
 						if(arena.getSeconds() <= 5){
 							plugin.getMessageManager().sendInGamePlayersTitle("&6&l" + (new StringBuilder(String.valueOf(arena.getSeconds()))).toString() + "&6&L!", "&fPreparate...", arena);
+							plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.secondCountdown).replace("{time}", (new StringBuilder(String.valueOf(arena.getSeconds()))).toString()), arena);
 						} else if (arena.getSeconds() == 1) {
 							plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.secondCountdown).replace("{time}", (new StringBuilder(String.valueOf(arena.getSeconds()))).toString()), arena);
 						} else {
@@ -81,7 +83,6 @@ public class CountdownManager {
 				for (Player player : arena.getPlayers()) {
 					arena.setBoard(player, arena.getSeconds());
 					player.setLevel(arena.getSeconds());
-					plugin.getMessageManager().sendInGamePlayersTitle("&e", "&fSe esta iniciando la nueva &eRonda&f...", arena);
 				}
 
 				if (arena.getSeconds() == 0) {
@@ -143,6 +144,7 @@ public class CountdownManager {
 						player.teleport(loc);
 					}
 					plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.TNTReleased), arena);
+
 					pickRandomTNT();
 				}
 				int seconds = arena.getSeconds();

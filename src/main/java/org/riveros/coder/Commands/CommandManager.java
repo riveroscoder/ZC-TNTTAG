@@ -9,23 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import org.riveros.coder.Commands.Cmds.addCmd;
-import org.riveros.coder.Commands.Cmds.forceStartCmd;
-import org.riveros.coder.Commands.Cmds.reloadCmd;
-import org.riveros.coder.Commands.Cmds.removeCmd;
-import org.riveros.coder.Commands.Cmds.resetStatsCmd;
-import org.riveros.coder.Commands.Cmds.createArenaCmd;
-import org.riveros.coder.Commands.Cmds.createSignCmd;
-import org.riveros.coder.Commands.Cmds.deleteArenaCmd;
-import org.riveros.coder.Commands.Cmds.setArenaPointCmd;
-import org.riveros.coder.Commands.Cmds.setLobbyCmd;
-import org.riveros.coder.Commands.Cmds.setSpectatorsCmd;
-import org.riveros.coder.Commands.Cmds.statsCmd;
-import org.riveros.coder.Commands.Cmds.coinsCmd;
-import org.riveros.coder.Commands.Cmds.joinCmd;
-import org.riveros.coder.Commands.Cmds.leaveCmd;
-import org.riveros.coder.Commands.Cmds.listArenasCmd;
-import org.riveros.coder.Commands.Cmds.transferCmd;
+import org.riveros.coder.Commands.Cmds.*;
 import org.riveros.coder.Main.TNTTag;
 import org.riveros.coder.Utils.AbstractTagAdminCommands;
 import org.riveros.coder.Utils.AbstractTagCommands;
@@ -53,6 +37,7 @@ public class CommandManager implements CommandExecutor {
 		this.adminCmds.add(new resetStatsCmd(plugin));
 		this.adminCmds.add(new forceStartCmd(plugin));
 		this.adminCmds.add(new reloadCmd(plugin));
+		this.adminCmds.add(new setspawnCmd(plugin));
 
 		this.setupCmds.add(new setLobbyCmd(plugin));
 		this.setupCmds.add(new setSpectatorsCmd(plugin));

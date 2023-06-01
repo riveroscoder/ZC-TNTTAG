@@ -1,4 +1,4 @@
-package org.riveros.coder.Managers;
+package org.riveros.coder.Managers.Arena;
 
 import java.util.Map;
 
@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.Maps;
 import org.riveros.coder.Main.TNTTag;
-import org.riveros.coder.Utils.CreateArenaData;
+import org.riveros.coder.Managers.Arena.CreateArenaData;
 
 public class TempArenaDataManager {
 	

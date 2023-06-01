@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.permissions.Permission;
 
-import org.riveros.coder.Managers.ArenaManager;
+import org.riveros.coder.Managers.Arena.ArenaManager;
 import org.riveros.coder.Managers.FileManager;
 import org.riveros.coder.Managers.MessageManager;
 import org.riveros.coder.Main.TNTTag;
