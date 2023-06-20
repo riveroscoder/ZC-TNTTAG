@@ -1,9 +1,12 @@
 package org.riveros.coder.Main;
 
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.economy.Economy;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,7 +15,9 @@ import org.riveros.coder.Managers.*;
 import org.riveros.coder.Managers.Arena.ArenaManager;
 import org.riveros.coder.Managers.Arena.Arena;
 import org.riveros.coder.Managers.Arena.TempArenaDataManager;
+import org.riveros.coder.Scoreboard.PlayerBoard;
 import org.riveros.coder.Utils.Permissions;
+import org.riveros.coder.Utils.Utils;
 
 public class TNTTag extends JavaPlugin {
 
@@ -26,15 +31,28 @@ public class TNTTag extends JavaPlugin {
 	private Economy economy;
 	private Logger logger;
 	private boolean versionDiff = false;
+
+	private HashMap<Player, PlayerBoard> boards = new HashMap<>();
 	private boolean useEconomy = false;
 	private String name;
 	private String version;
+
+	public static TNTTag instance;
 
 	public void onEnable() {
 		final long currentTime = System.currentTimeMillis();
 		if (!this.getDataFolder().exists()) {
 			this.getDataFolder().mkdir();
 		}
+
+		if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+			Bukkit.getConsoleSender().sendMessage(Utils.CCS("&aSe encontro PlaceholderAPI correctamente"));
+		} else {
+			Bukkit.getConsoleSender().sendMessage(Utils.CCS("&cColoca el PlaceholderAPI... ! :("));
+			Bukkit.getPluginManager().disablePlugin(this);
+		}
+
+		instance = this;
 		if (getServer().getPluginManager().getPlugin("Vault") != null) {
 			RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 			if (rsp != null) {
@@ -98,8 +116,15 @@ public class TNTTag extends JavaPlugin {
 		return economy;
 	}
 
+	public HashMap<Player, PlayerBoard> getBoards() {
+		return boards;
+	}
+
 	public String getVersionString() {
 		return version;
 	}
 
+	public static TNTTag getInstance() {
+		return instance;
+	}
 }

@@ -2,12 +2,8 @@ package org.riveros.coder.Managers;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+import org.riveros.coder.FileConfig.*;
 import org.riveros.coder.Main.TNTTag;
-import org.riveros.coder.FileConfig.Config;
-import org.riveros.coder.FileConfig.GameData;
-import org.riveros.coder.FileConfig.Messages;
-import org.riveros.coder.FileConfig.PlayerData;
-import org.riveros.coder.FileConfig.Signs;
 
 public class FileManager {
 
@@ -19,6 +15,11 @@ public class FileManager {
 		Config.load();
 		Config.save();
 		Config.reload();
+
+		ScoreB.reload();
+		ScoreB.load();
+		ScoreB.save();
+		ScoreB.reload();
 
 		PlayerData.reload();
 		PlayerData.load();
@@ -48,6 +49,10 @@ public class FileManager {
 		return Config.getConfig();
 	}
 
+	public FileConfiguration getScore() {
+		return ScoreB.getScoreboard();
+	}
+
 	public FileConfiguration getPlayerData() {
 		return PlayerData.getPlayerData();
 	}
@@ -66,6 +71,7 @@ public class FileManager {
 
 	public void saveConfig() {
 		Config.save();
+		ScoreB.save();
 		PlayerData.save();
 		GameData.save();
 		Messages.save();
@@ -74,6 +80,7 @@ public class FileManager {
 
 	public void reloadConfig() {
 		Config.reload();
+		ScoreB.reload();
 		PlayerData.reload();
 		GameData.reload();
 		Messages.reload();

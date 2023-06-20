@@ -1,11 +1,53 @@
 package org.riveros.coder.Utils;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.riveros.coder.FileConfig.ScoreB;
+import org.riveros.coder.Main.TNTTag;
+import org.riveros.coder.Managers.Arena.Arena;
+import org.riveros.coder.Managers.Arena.ArenaState;
+import org.riveros.coder.Scoreboard.PlayerBoard;
 
 public class Utils {
 
+    FileConfiguration yml = ScoreB.getScoreboard();
+
     private final static int CENTER_PX = 154;
+
+    public void ScoreChange(Player p233, Arena a, ArenaState score){
+        if (yml.getBoolean("ENABLED") && yml.getStringList("WORLDS").contains(p233.getPlayer().getWorld().getName())) {
+            if(score.equals(ArenaState.WAITING)){
+                new PlayerBoard(TNTTag.getInstance(),
+                        p233,
+                        yml.getStringList("IN-LOBBY.LINES.text"),
+                        yml.getStringList("TITLE.LINES"),
+                        yml.getInt("TITLE.DELAY")).remove();
+                new PlayerBoard(TNTTag.getInstance(),
+                        p233,
+                        yml.getStringList("WAITING.LINES.text"),
+                        yml.getStringList("TITLE.LINES"),
+                        yml.getInt("TITLE.DELAY")
+                );
+            } else if(score.equals(ArenaState.IN_GAME)){
+                new PlayerBoard(TNTTag.getInstance(),
+                        p233,
+                        yml.getStringList("WAITING.LINES.text"),
+                        yml.getStringList("TITLE.LINES"),
+                        yml.getInt("TITLE.DELAY")).remove();
+                new PlayerBoard(TNTTag.getInstance(),
+                        p233,
+                        yml.getStringList("IN-GAME.LINES.text"),
+                        yml.getStringList("TITLE.LINES"),
+                        yml.getInt("TITLE.DELAY")
+                );
+            }
+        }
+    }
+
+    public static String CCS(String msg){
+        return ChatColor.translateAlternateColorCodes('&', (msg));
+    }
 
     public static void CC(Player p, String s){
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', (s)));

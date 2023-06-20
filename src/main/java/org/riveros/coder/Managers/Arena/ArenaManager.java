@@ -47,21 +47,38 @@ public class ArenaManager {
 					InventoryManager.saveInventory(player);
 					if (arena.getLobbyLocation() != null) {
 						player.teleport(arena.getLobbyLocation());
+						player.setPlayerListName(Utils.CCS("&a" + player.getName()));
 
+						arena.setState(ArenaState.IN_GAME);
 						arena.getPlayers().add(player);
 
 						arena.getAlivePlayers().add(player);
 						int playersLeft = arena.getMinPlayers() - arena.getPlayers().size();
 
 						Utils.CCT(player, "", "&fIngresaste a la Arena &a" + arenaName);
+
+						Utils.CCC(player, "");
+						Utils.CCC(player, "&f&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+						Utils.CCC(player, "&b&lTNT TAG &ev1.1");
+						Utils.CCC(player, "");
+						Utils.CCC(player, "&eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+						Utils.CCC(player, "&eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+						Utils.CCC(player, "&eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+						Utils.CCC(player, "&eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+						Utils.CCC(player, "");
+						Utils.CCC(player, "&bplay.zelicraft.com");
+						Utils.CCC(player, "&f&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+						Utils.CCC(player, "");
 						arena.sendMessage(Messages.getMessage(Message.joinedGame).replace("{player}", player.getName()).replace("{size}", arena.getPlayers().size() + "").replace("{max_players}", arena.getMaxPlayers() + ""));
 						if ((playersLeft == 0) && (!arena.runningCountdown())) {
 							startArena(arenaName);
 						}
 						plugin.getSignManager().updateSigns(arenaName);
 					}
-				} else {
-					player.sendMessage(ChatColor.RED + Messages.getMessage(Message.arenaAlreadyStarted));
+				} else if (arena.getState() == ArenaState.IN_GAME){
+					Utils.CC(player, "&cLa arena se encuentra en juego... Intentalo mas tarde");
+				} else if (arena.getState() == ArenaState.FINISHING){
+					Utils.CC(player, "&cLa arena se esta reiniciando... Intentalo mas tarde");
 				}
 			} else {
 				player.sendMessage(ChatColor.RED + Messages.getMessage(Message.fullArena));
@@ -120,6 +137,7 @@ public class ArenaManager {
 		plugin.getSignManager().updateSigns(arena.getName());
 
 		arena.removeBoard(player);
+		player.setPlayerListName(Utils.CCS("&7" + player.getName()));
 		if (arena.getPlayers().size() == 1) {
 			if (arena.isInGame()) {
 				arena.sendMessage("The last player left!");
@@ -160,6 +178,7 @@ public class ArenaManager {
 				plugin.getMessageManager().sendMessage(player, Messages.getMessage(Message.forceStarting));
 				arena.getCountdownManager().cancelTask();
 				arena.getCountdownManager().startGame(10);
+				arena.setState(ArenaState.STARTING);
 			} else {
 				plugin.getMessageManager().sendErrorMessage(player, Messages.getMessage(Message.forceStartAlreadyStarted));
 			}
@@ -172,6 +191,7 @@ public class ArenaManager {
 		Arena arena = getArena(arenaName);
 		if (arena.isInGame()) {
 			plugin.getMessageManager().sendMessage(player, Messages.getMessage(Message.forceEnding));
+			arena.setState(ArenaState.FINISHING);
 			arena.sendMessage(Messages.getMessage(Message.forceEndKicked));
 			endArena(arena);
 		} else {

@@ -42,8 +42,8 @@ public class CountdownManager {
 				public void run() {
 					if (timesToBroadcast.contains(arena.getSeconds()))
 						if(arena.getSeconds() <= 5){
-							plugin.getMessageManager().sendInGamePlayersTitle("&6&l" + (new StringBuilder(String.valueOf(arena.getSeconds()))).toString() + "&6&L!", "&fPreparate...", arena);
 							plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.secondCountdown).replace("{time}", (new StringBuilder(String.valueOf(arena.getSeconds()))).toString()), arena);
+							plugin.getMessageManager().sendInGamePlayersTitle("&6&l" + (new StringBuilder(String.valueOf(arena.getSeconds()))) + "&6&L!", "&fPreparate...", arena);
 						} else if (arena.getSeconds() == 1) {
 							plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.secondCountdown).replace("{time}", (new StringBuilder(String.valueOf(arena.getSeconds()))).toString()), arena);
 						} else {
@@ -61,10 +61,6 @@ public class CountdownManager {
 						for (Player player : arena.getPlayers()) {
 							player.teleport(loc);
 						}
-
-						plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.TNTReleased), arena);
-						plugin.getMessageManager().sendInGamePlayersTitle("&b&lCORRE!", "&fLa &cTNT &ffue entregada...", arena);
-
 						pickRandomTNT();
 						startRound();
 					}
@@ -113,6 +109,7 @@ public class CountdownManager {
 							plugin.getArenaManager().removePlayer(player);
 							if (arena.getPlayers().size() == 0) {
 								arena.setInGame(false);
+								arena.setState(ArenaState.FINISHING);
 
 								return;
 							}
@@ -120,9 +117,11 @@ public class CountdownManager {
 
 					} else if (arena.getPlayers().size() <= 6) {
 						blowUpTNTs();
+						arena.setRound(arena.getRound() + 1);
 						startDelayedRound();
 					} else {
 						blowUpTNTs();
+						arena.setRound(arena.getRound() + 1);
 						startDelayedRound();
 					}
 				}
@@ -142,10 +141,21 @@ public class CountdownManager {
 					Location loc = arena.getArenaLocation();
 					for (Player player : arena.getPlayers()) {
 						player.teleport(loc);
+						player.setPlayerListName(Utils.CCS("&7" + player.getName()));
 					}
 					plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.TNTReleased), arena);
 
 					pickRandomTNT();
+					for (Player player : arena.getPlayers()) {
+						Utils.CCC(player, "");
+						Utils.CCC(player, "&f&l¡Ronda " + arena.getRound() + " iniciada!");
+						Utils.CCC(player, "");
+						Utils.CCC(player, "&eLa TNT fue entregada a:");
+						for(Player t : arena.getTNTPlayers()){
+							Utils.CCC(player, "&c[TNT] " + t.getName());
+						}
+						Utils.CCC(player, "");
+					}
 				}
 				int seconds = arena.getSeconds();
 				arena.setSeconds(seconds - 1);
@@ -245,6 +255,9 @@ public class CountdownManager {
 			player.getInventory().setItem(7, new ItemStack(Material.TNT, 64));
 			player.getInventory().setItem(8, new ItemStack(Material.TNT, 64));
 			player.getInventory().setItem(9, new ItemStack(Material.TNT, 64));
+
+			player.setPlayerListName(Utils.CCS("&c[T] " + player.getName()));
+
 			for (PotionEffect effect : player.getActivePotionEffects()) {
 				player.removePotionEffect(effect.getType());
 			}

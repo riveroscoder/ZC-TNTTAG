@@ -20,6 +20,8 @@ public class Arena {
 
 	public static ArrayList<Arena> arenaObjects = new ArrayList<Arena>();
 	private TNTTag plugin;
+
+	private ArenaState state;
 	private CountdownManager countdownManager;
 	private Location lobbyLocation;
 	private Location arenaLocation;
@@ -28,6 +30,7 @@ public class Arena {
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Player> TNTPlayers = new ArrayList<Player>();
 	private ArrayList<Player> AlivePlayers = new ArrayList<Player>();
+	private int round;
 	private int maxPlayers;
 	private int minPlayers;
 	private int taskID;
@@ -43,6 +46,8 @@ public class Arena {
 		this.spectatorLocation = endLocation;
 		this.maxPlayers = maxPlayers;
 		this.minPlayers = minPlayers;
+		this.round = 1;
+		this.state = ArenaState.WAITING;
 		this.countdownManager = new CountdownManager(plugin, this);
 		
 		arenaObjects.add(this);
@@ -50,6 +55,22 @@ public class Arena {
 
 	public Location getLobbyLocation() {
 		return this.lobbyLocation;
+	}
+
+	public ArenaState getState() {
+		return state;
+	}
+
+	public void setState(ArenaState state) {
+		this.state = state;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
 	}
 
 	public void setLobbyLocation(Location joinLocation) {
@@ -146,6 +167,7 @@ public class Arena {
 
 	public void endArena() {
 		setInGame(false);
+		setRound(1);
 		for (Player player : this.players) {
 			InventoryManager.restoreInventory(player);
 
@@ -159,6 +181,7 @@ public class Arena {
 			removeBoard(player);
 			if (this.players.size() == 0) {
 				this.players.clear();
+				this.round = 0;
 				return;
 			}
 		}
@@ -198,6 +221,7 @@ public class Arena {
 		Score Tags = this.objective.getScore("asdd");
 		Tags.setScore(time);
 		player.setScoreboard(this.board);
+
 	}
 
 	public void removeBoard(Player player) {

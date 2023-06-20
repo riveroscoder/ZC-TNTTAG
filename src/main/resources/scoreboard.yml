@@ -1,0 +1,48 @@
+ENABLED: true
+WORLDS:
+  - Lobby
+
+TITLE:
+  LINES:
+    - '&d&lTNTTAG'
+  DELAY: 1000
+
+
+IN-LOBBY:
+  LINES:
+    text:
+      - "&713/13/1313"
+      - "&7"
+      - "&fJugador: &a%player_name%"
+      - "&fMonedas: &60$"
+      - "&1"
+      - "&7- &eToques: &a0"
+      - "&7- &eTocado: &a0"
+      - "&1"
+      - "&fLobby: &b#1"
+      - "&e"
+      - "&e   play.zelicraft.com"
+
+WAITING:
+  LINES:
+    text:
+      - "&713/13/1313"
+      - "&7"
+      - "&eIniciando en &a<countdown>"
+      - "&1"
+      - "&fMapa: &b<map>"
+      - "&fEn Juego: &a<players> Jugadores."
+      - "&e"
+      - "&e   play.zelicraft.com"
+
+IN-GAME:
+  LINES:
+    text:
+      - "&7Ronda #<round>"
+      - "&7"
+      - "&eExplosión en &a<countdown>"
+      - "&1"
+      - "&fCon vida: &a<alive> Jugadores."
+      - "&e"
+      - "&e   play.zelicraft.com"
+

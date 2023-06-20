@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import org.riveros.coder.Utils.Utils;
 import org.riveros.coder.ZCAPI.PlayerTagEvent;
 import org.riveros.coder.Main.TNTTag;
 import org.riveros.coder.FileConfig.Messages;
@@ -61,6 +62,9 @@ public class EntityDamageByEntityListener implements Listener {
 
 					victim.getInventory().setHelmet(new ItemStack(Material.TNT, 1));
 					damager.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+
+					victim.setPlayerListName(Utils.CCS("&c[T] " + victim.getName()));
+					damager.setPlayerListName(Utils.CCS("&a" + damager.getName()));
 
 					damager.getInventory().setItem(0, new ItemStack(Material.COMPASS, 1));
 					damager.getInventory().setItem(1, new ItemStack(Material.AIR, 1));
