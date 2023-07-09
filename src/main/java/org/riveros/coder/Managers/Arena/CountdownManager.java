@@ -20,6 +20,7 @@ import org.riveros.coder.FileConfig.Messages;
 import org.riveros.coder.Managers.Arena.Arena;
 import org.riveros.coder.Managers.InventoryManager;
 import org.riveros.coder.Utils.Message;
+import org.riveros.coder.Utils.TNTUtils;
 import org.riveros.coder.Utils.Utils;
 
 public class CountdownManager {
@@ -152,7 +153,7 @@ public class CountdownManager {
 						Utils.CCC(player, "");
 						Utils.CCC(player, "&eLa TNT fue entregada a:");
 						for(Player t : arena.getTNTPlayers()){
-							Utils.CCC(player, "&c[TNT] " + t.getName());
+							Utils.CCC(player, "&c[T] " + t.getName());
 						}
 						Utils.CCC(player, "");
 					}
@@ -174,17 +175,7 @@ public class CountdownManager {
 			plugin.getMessageManager().sendInGamePlayersTitle("&c&lBOOM!", "&cLos jugadores con la bomba explotaron...", arena);
 			plugin.getMessageManager().sendInGamePlayersMessage(Messages.getMessage(Message.playerBlewUp).replace("{player}", player.getName()), arena);
 
-			player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(0, new ItemStack(Material.COMPASS, 1));
-			player.getInventory().setItem(1, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(2, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(3, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(4, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(5, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(6, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(7, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(8, new ItemStack(Material.AIR, 1));
-			player.getInventory().setItem(9, new ItemStack(Material.AIR, 1));
+			TNTUtils.update(player, false);
 
 			it.remove();
 			arena.getPlayers().remove(player);
@@ -244,24 +235,7 @@ public class CountdownManager {
 		arena.getAlivePlayers().remove(players[randomInt]);
 		if (players[randomInt] != null) {
 			Player player = players[randomInt];
-			player.getInventory().setHelmet(new ItemStack(Material.TNT, 1));
-			player.getInventory().setItem(0, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(1, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(2, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(3, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(4, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(5, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(6, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(7, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(8, new ItemStack(Material.TNT, 64));
-			player.getInventory().setItem(9, new ItemStack(Material.TNT, 64));
-
-			player.setPlayerListName(Utils.CCS("&c[T] " + player.getName()));
-
-			for (PotionEffect effect : player.getActivePotionEffects()) {
-				player.removePotionEffect(effect.getType());
-			}
-			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 4));
+			TNTUtils.update(player, true);
 		}
 		players = null;
 	}
