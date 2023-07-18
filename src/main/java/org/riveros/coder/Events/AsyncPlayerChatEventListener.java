@@ -32,7 +32,7 @@ public class AsyncPlayerChatEventListener implements Listener {
             }
         } else {
             for(Player p : sender.getWorld().getPlayers()){
-                Utils.CC(p, "&6[0&6]&f" + sender.getName() + "&7: &f" + message);
+                Utils.CC(p, "&7[En Lobby] &6(0&6)&f" + sender.getName() + "&7: &f" + message);
             }
         }
         e.setCancelled(true);

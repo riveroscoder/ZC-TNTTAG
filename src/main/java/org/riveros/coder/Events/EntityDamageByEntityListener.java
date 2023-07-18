@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import org.riveros.coder.Utils.TNTUtils;
 import org.riveros.coder.Utils.Utils;
 import org.riveros.coder.ZCAPI.PlayerTagEvent;
 import org.riveros.coder.Main.TNTTag;
@@ -49,44 +50,7 @@ public class EntityDamageByEntityListener implements Listener {
 					plugin.getFileManager().getPlayerData().set(damager.getName() + ".tags", Integer.valueOf(tags + 1));
 					plugin.getFileManager().getPlayerData().set(victim.getName() + ".taggeds", Integer.valueOf(taggeds + 1));
 
-					for (PotionEffect effect : damager.getActivePotionEffects()) {
-						damager.removePotionEffect(effect.getType());
-					}
-
-					for (PotionEffect effect : victim.getActivePotionEffects()) {
-						victim.removePotionEffect(effect.getType());
-					}
-
-					victim.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 4));
-					damager.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2147483647, 3));
-
-					victim.getInventory().setHelmet(new ItemStack(Material.TNT, 1));
-					damager.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
-
-					victim.setPlayerListName(Utils.CCS("&c[T] " + victim.getName()));
-					damager.setPlayerListName(Utils.CCS("&a" + damager.getName()));
-
-					damager.getInventory().setItem(0, new ItemStack(Material.COMPASS, 1));
-					damager.getInventory().setItem(1, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(2, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(3, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(4, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(5, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(6, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(7, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(8, new ItemStack(Material.AIR, 1));
-					damager.getInventory().setItem(9, new ItemStack(Material.AIR, 1));
-
-					victim.getInventory().setItem(0, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(1, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(2, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(3, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(4, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(5, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(6, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(7, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(8, new ItemStack(Material.TNT, 64));
-					victim.getInventory().setItem(9, new ItemStack(Material.TNT, 64));
+					TNTUtils.update(damager, victim);
 
 					FireworkEffect effect = FireworkEffect.builder().withColor(Color.RED).with(FireworkEffect.Type.CREEPER).build();
 					this.fplayer.playFirework(victim.getWorld(), victim.getLocation(), effect);

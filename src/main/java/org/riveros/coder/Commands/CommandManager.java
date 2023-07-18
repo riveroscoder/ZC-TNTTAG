@@ -43,6 +43,7 @@ public class CommandManager implements CommandExecutor {
 		this.setupCmds.add(new setSpectatorsCmd(plugin));
 		this.setupCmds.add(new setArenaPointCmd(plugin));
 		this.setupCmds.add(new createArenaCmd(plugin));
+		this.setupCmds.add(new ArenaCmd(plugin));
 		this.setupCmds.add(new deleteArenaCmd(plugin));
 		this.setupCmds.add(new createSignCmd(plugin));
 	}
@@ -148,7 +149,9 @@ public class CommandManager implements CommandExecutor {
 		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&e&LSISTEMA DE TNTTAG DE ZELICRAFT NETWORK")));
 		sender.sendMessage(" ");
 		for (AbstractTagCommands c : this.cmds) {
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&b/zelitag &6" + c.getName() + (c.getArgs() == null ? " " : new StringBuilder(" ").append(c.getArgs()).append(" ").toString()))));
+			if(!(c.getName() != "createarena" || c.getName() != "setlobby" || c.getName() != "setarena" || c.getName() != "setspawn")){
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&b/zelitag &6" + c.getName() + (c.getArgs() == null ? " " : new StringBuilder(" ").append(c.getArgs()).append(" ").toString()))));
+			}
 		}
 		sender.sendMessage(" ");
 	}
@@ -157,7 +160,9 @@ public class CommandManager implements CommandExecutor {
 		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&e&LSISTEMA DE TNTTAG DE ZELICRAFT NETWORK")));
 		sender.sendMessage(" ");
 		for (AbstractTagAdminCommands c : this.adminCmds) {
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&b/zelitag game &6" + c.getName() + (c.getArgs() == null ? " " : new StringBuilder(" ").append(c.getArgs()).append(" ").toString()))));
+			if(!(c.getName() != "createarena" || c.getName() != "setlobby" || c.getName() != "setarena" || c.getName() != "setspawn")){
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&b/zelitag game &6" + c.getName() + (c.getArgs() == null ? " " : new StringBuilder(" ").append(c.getArgs()).append(" ").toString()))));
+			}
 		}
 		sender.sendMessage(" ");	}
 
@@ -165,7 +170,9 @@ public class CommandManager implements CommandExecutor {
 		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&e&LSISTEMA DE TNTTAG DE ZELICRAFT NETWORK")));
 		sender.sendMessage(" ");
 		for (AbstractTagSetupCommands c : this.setupCmds) {
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&b/zelitag setup &6" + c.getName() + (c.getArgs() == null ? " " : new StringBuilder(" ").append(c.getArgs()).append(" ").toString()))));
+			if(!(c.getName() != "createarena" || c.getName() != "setlobby" || c.getName() != "setarena" || c.getName() != "setspawn")){
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ("&b/zelitag setup &6" + c.getName() + (c.getArgs() == null ? " " : new StringBuilder(" ").append(c.getArgs()).append(" ").toString()))));
+			}
 		}
 		sender.sendMessage(" ");	}
 }
