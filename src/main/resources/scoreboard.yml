@@ -1,48 +1,45 @@
 ENABLED: true
 WORLDS:
-  - Lobby
-
+  - world
+  - Bloom
 TITLE:
   LINES:
+    - '&f&lTNTTAG'
     - '&d&lTNTTAG'
-  DELAY: 1000
-
-
+    - '&5&lTNTTAG'
+  DELAY: 2
 IN-LOBBY:
   LINES:
     text:
-      - "&713/13/1313"
-      - "&7"
-      - "&fJugador: &a%player_name%"
-      - "&fMonedas: &60$"
-      - "&1"
-      - "&7- &eToques: &a0"
-      - "&7- &eTocado: &a0"
-      - "&1"
-      - "&fLobby: &b#1"
-      - "&e"
-      - "&e   play.zelicraft.com"
-
+      - '&7&7%server_time_dd/MM/yyyy%'
+      - '&7'
+      - '&fJugador: &a%player_name%'
+      - '&1'
+      - '&6▐ &fToques: &b%zelitag_tags%'
+      - '&6▐ &fTocado: &b%zelitag_tagged%'
+      - '&1'
+      - '&fLobby: &e#1'
+      - '&e'
+      - '&6   play.zelicraft.com'
 WAITING:
   LINES:
     text:
-      - "&713/13/1313"
-      - "&7"
-      - "&eIniciando en &a<countdown>"
-      - "&1"
-      - "&fMapa: &b<map>"
-      - "&fEn Juego: &a<players> Jugadores."
-      - "&e"
-      - "&e   play.zelicraft.com"
-
+      - '&7&7%server_time_dd/MM/yyyy%'
+      - '&7'
+      - '&eIniciando en &a%zelitag_count%'
+      - '&1'
+      - '&fMapa: &b%zelitag_map%'
+      - '&fEn Juego: &a%zelitag_alive%'
+      - '&e'
+      - '&6   play.zelicraft.com'
 IN-GAME:
   LINES:
     text:
-      - "&7Ronda #<round>"
-      - "&7"
-      - "&eExplosión en &a<countdown>"
-      - "&1"
-      - "&fCon vida: &a<alive> Jugadores."
-      - "&e"
-      - "&e   play.zelicraft.com"
-
+      - '&7Ronda #%zelitag_round%'
+      - '&7'
+      - '&eExplosión en &a%zelitag_count%'
+      - '&1'
+      - '&e¡Intenta mantenerte con vida!'
+      - '&fCon vida: &a%zelitag_alive% Jugadores.'
+      - '&e'
+      - '&6   play.zelicraft.com'
